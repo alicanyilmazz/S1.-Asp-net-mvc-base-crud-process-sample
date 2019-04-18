@@ -1,0 +1,46 @@
+﻿@model alican_yılmaz_come_back.Models.kisiler
+@{
+    ViewBag.Title = "edit";
+}
+
+<h2>Kisi düzenle</h2>
+<hr />
+@*                        bilgileri post edebilmek için bunun içine koymalısın  @using (Html.BeginForm())   içerisine   *@
+@using (Html.BeginForm())
+{
+
+
+    <div class="input-group">
+        <span class="input-group-addon" id="txt_ad">Ad</span>
+        @Html.TextBoxFor(x => x.ad, new { @class = "form-control", placeholder = "Username", aria_describedby = "txt_ad" })
+
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon" id="txt_soyad">Soyad</span>
+        @Html.TextBoxFor(x => x.soyad, new { @class = "form-control", placeholder = "Surname", aria_describedby = "txt_ad" })
+
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon" id="txt_yas">Yas</span>
+        @Html.TextBoxFor(x => x.yas, new { @class = "form-control", placeholder = "Age", aria_describedby = "txt_ad" })
+
+    </div>
+    <br />
+    <div class="input-group">
+        <input type="submit" value="kaydet" class=" btn btn-success" />
+    </div>
+    <br />
+    <div class="input-group">
+
+        @if (ViewBag.Result != null)
+        {
+            <div class="alert alert-@ViewBag.Status" role="alert">@ViewBag.Result</div>
+        }
+
+    </div>
+}
+
+
+

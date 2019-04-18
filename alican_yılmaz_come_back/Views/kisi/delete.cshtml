@@ -1,0 +1,43 @@
+﻿@model alican_yılmaz_come_back.Models.kisiler
+@{
+    ViewBag.Title = "delete";
+}
+
+<h2>yeni kisi</h2>
+<hr />
+
+
+<ul class="list-group">
+    <li class="list-group-item list-group-item-success">KİSİ BİLGİLERİ</li>
+    <li class="list-group-item list-group-item-info">Ad : @Model.ad</li>
+    <li class="list-group-item list-group-item-warning">Soyad : @Model.soyad</li>
+    <li class="list-group-item list-group-item-danger">Yas : @Model.yas</li>
+    <li class="list-group-item list-group-item-warning">Kisiyi silmek istiyor musunuz?</li>
+</ul>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(x => x.ID)
+<div class="input-group">
+    <input type="submit" value="Sil" class=" btn btn-success" />
+    &nbsp;
+    @Html.ActionLink("İptal", "homepage", "Home", new { area = "" }, new { @class = "btn btn-warning" })
+</div>
+}
+<br />
+
+<br />
+<div class="input-group">
+
+    @if (ViewBag.Result != null)
+    {
+        <div class="alert alert-@ViewBag.Status" role="alert">@ViewBag.Result</div>
+    }
+
+</div>
+
+
+
+
+
+

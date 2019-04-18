@@ -1,0 +1,74 @@
+﻿
+@using alican_yılmaz_come_back.ViewModels.Home
+@model HomePageViewModel
+@{
+    ViewBag.Title = "homepage";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <h2>homepage</h2>
+            <hr />
+        </div>
+    </div>
+
+
+    @*@Html.HiddenFor(x=> x.ID)*@
+
+    <div class="row">
+        <div class="col-md-6">
+            @{
+                bool cntrl = true;
+            }
+            <div>
+                @Html.ActionLink("yeni kisi", "yeni", "kisi", new {cntrlr_cnt=cntrl }, new { @class = "btn btn-primary" }) @*kisi controllerinin yeni action'ına gider*@
+                <br /><br />
+            </div>
+
+            <ul class="list-group">
+                <li class="list-group-item active"><h4>Kisiler</h4></li>
+
+                @foreach (var kisi in Model.kisiler)
+                {
+                    <li class="list-group-item">
+
+                        @Html.ActionLink("duzenle", "edit", "Kisi", new { kisi_id = kisi.ID }, new { @class = "btn btn-warning btn-xs" })
+                        @Html.ActionLink("sil", "delete", "Kisi", new { kisi_id = kisi.ID }, new { @class = "btn btn-danger btn-xs" }) &emsp;
+                        <span class="glyphicon glyphicon-user burylywood"></span> @(kisi.ad + "  " + kisi.soyad) (<i>yasi: @kisi.yas</i>)
+                    </li>
+                }
+
+            </ul>
+        </div>
+        <div class="col-md-6">
+
+            <div>
+                @Html.ActionLink("yeni adres", "yeni", "adres", null, new { @class = "btn btn-primary" }) @*adres controllerinin yeni action ına gider*@
+                <br /><br />
+            </div>
+
+            <ul class="list-group">
+                <li class="list-group-item active"><h4>Adresler</h4></li>
+                @foreach (var adres in Model.adresler)
+                {   
+                    <li class="list-group-item">
+                        @Html.ActionLink("duzenle", "edit", "Adres", new { adres_id = adres.ID }, new { @class = "btn btn-warning btn-xs" })
+                        @Html.ActionLink("sil", "delete", "Adres", new { adres_id = adres.ID }, new { @class = "btn btn-danger btn-xs" }) &emsp;
+                        <span class="glyphicon glyphicon-home red"></span>&emsp; @adres.adres_tanim (<i> @(adres.kisi.ad + " " + adres.kisi.soyad )</i>)
+                    </li>
+                }
+
+            </ul>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+

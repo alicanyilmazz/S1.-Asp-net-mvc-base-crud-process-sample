@@ -1,0 +1,53 @@
+﻿@model alican_yılmaz_come_back.Models.adresler
+@{
+    ViewBag.Title = "Yeni";
+}
+
+<h2>Yeni Adres</h2>
+<hr />
+
+<hr />
+@*         bilgileri post edebilmek için bunun içine koymalısın  @using (Html.BeginForm())   içerisine   *@
+@using (Html.BeginForm())
+{
+
+    @*@Html.HiddenFor(x=> x.ID)*@
+
+    <div class="input-group">
+        <span class="input-group-addon" id="txt_adres">Adres</span>
+        @Html.TextAreaFor(x => x.adres_tanim, new { @class = "form-control", placeholder = "Address", aria_describedby = "txt_adres", cols = "60", rows = "20" })
+
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon" id="ddl_kisi">Kisi</span>
+        @Html.DropDownListFor(x => x.kisi.ID, (List<SelectListItem>)ViewBag.kisiler, new { @class = "form-control", aria_describedby = "ddl_kisi" })
+
+    </div>
+    <br />
+
+    <div class="input-group">
+        <input type="submit" value="kaydet" class=" btn btn-success" />
+    </div>
+    <br />
+    <div class="input-group">
+
+        @if (ViewBag.Result != null)
+        {
+            <div class="alert alert-@ViewBag.Status" role="alert">@ViewBag.Result</div>
+        }
+
+    </div>
+}
+
+@*
+    ViewBag ve TempData olayı ile şunu karıştırdığın ortaya çıktı.
+    AdresController içerisindeki [HttpPost] ve [HttpGet] Action 'ları aslında sadece Yeni.cshtml gibi c# html sayfalarının html kısımlarında kullacagı ViewBag TempData
+    gibi değişkenler tanımlanıyor ve bunlara veritabanı vs gibi yerlernden veri atanıyor ve biz burada tanımlı olan değişkenleri kullanıyoruz  Yeni.cshtml gibi
+    hali hazırda html elementkleri  olan sayfalar zaten var yani bu çıktı  [HttpPost] ve [HttpGet] Action larına göre her defasında ayrı ayrı basılmıyor sadece
+    içerisine gönderilen ve bu elementlerın c# üzerinden eriştiği birtakım değişkenler değişiyor.
+
+    dropdown list parametrelerinden biri Tempdata  [HttpGet] ile dropdownList içerindeki Tempdata nın içerdiği bilgiler get sonrasında post yapılırken ddl içerisinde
+    kaybolmaz bir atımlık daha arka planda tutuyor ViewBag kullansaydık kaybolacaktı.
+
+*@
